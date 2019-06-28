@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/log.css" />
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="box">
+			<a class="miya" href="index.html"><img src="img/miya.png" /></a>
+			<img class="tu1" src="img/denglu1.gif" />
+			<div class="r">
+				<div class="loginTit">
+					<span class="l yahei pink">免费注册</span>
+					<!--span class="r"> <i class="pink">还没有蜜芽账号？</i> <a href="/register?url=/">30秒注册</a></span-->
+				</div>
+				<input type="text" id="inp1" placeholder="请输入1开头的11位纯数字" />
+				<div class="r1">
+					<input type="text" id="yanzheng" placeholder="输入验证码" />
+					<div class="suiji"></div>
+					<input type="button" id="ma" value="获取短信验证码" />
+				</div>
+				<input type="button" id="denglu" value="一键注册" />
+				<div class="yixia">使用以下账号登录:<span><img src="img/weixintubiao.gif"/></span><span><img src="img/weixintubiao2.gif"/></span></div>
+			</div>
+			<div id="dibu">Copyright ©2019 北京花旺在线商贸有限公司 Miyabaobei.com 保留一切权利。客服热线： 010-10108088。沪ICP备16004431号-2 </div>
+			<a id="pingguo" href="javascript:;"></a>
+			<a id="anzuo" href="javascript:;"></a>
+		</div>
+		<script type="text/javascript">
+//			$(document).ready($(function(){
+//				alert("您在该注册页面注册的手机号和验证码将作为登录页面的账号密码使用")
+//				}))
+			$(function(){
+				alert("您在该注册页面注册的手机号和验证码将作为登录页面的账号密码使用")
+			})
+			
+			var ma = document.querySelectorAll("#ma")[0];
+			var suiji = document.querySelectorAll(".suiji")[0]
+			var denglu = document.querySelectorAll("#denglu")[0]
+			var yanzheng = document.querySelectorAll("#yanzheng")[0]
+			var inp1 = document.querySelectorAll("#inp1")[0]
+			//				$.get("http://47.104.244.134:8080/username.do",{username:"huquanzhou157"}).done(data=>{
+			//			console.log(data)
+			//		})
+			function rand(min, max) {
+				return Math.floor(Math.random() * (max - min)) + min;
+			}
+			ma.onclick = function() {
+				var randnum = rand(1000, 9999);
+				suiji.innerHTML = randnum;
+			}
+
+			denglu.onclick = function() {
+				var phone = inp1.value;
+//				console.log(phone)
+//				console.log(yanzheng.value)
+
+				if(!(/^1(0|1|2|3|4|5|6|7|8|9)\d{9}$/.test(phone))) {
+					alert("请输入以1开头的11位纯数字");
+
+				} else if(yanzheng.value == "") {
+					alert("验证码不能为空")
+				} else if(Number(yanzheng.value) !== Number(suiji.innerHTML)) {
+					alert("请输入正确验证码");
+				} else {
+					
+					$.post("http://47.104.244.134:8080/usersave.do", {
+						username: phone,//phone是账号
+						password: yanzheng.value,//这个是密码
+						email: "hqz_" + phone + "@qq.com",
+						sex: "男"
+					}).done(function(data){
+						console.log(data)
+						if(data.code==0){
+							alert("注册成功");
+							location.href="log.html"
+						}else if(data.code==1){
+							alert("该手机号已被注册")
+						}
+					})
+					
+				}
+			}
+		</script>
+
+	</body>
+
+</html>

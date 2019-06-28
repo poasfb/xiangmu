@@ -54,11 +54,8 @@
 		</div>
 
 		<script type="text/javascript">
-			
-			
 			var id1 = parseInt(location.search.split("=")[1])
-			console.log(id1)
-			
+			console.log()
 			$.get("http://47.104.244.134:8080/goodsbyid.do", {
 				id: id1 //商品编号
 			}).done(data => {
@@ -104,8 +101,7 @@
 				}
 				}
 				jinru.onclick = function(){
-					
-					window.open('cart.html','_self')
+					window.open('http://localhost:8080/cart.html','_self')
 				}
 				
 				
@@ -116,12 +112,7 @@
 				console.log(a)
 				console.log(gouwuche)
 				gouwuche.onclick = function() {
-					var Token = location.search.split("&")[1].split("=")[1];					
-					if(Token=="undefined"){
-						alert("登录后才可以添加商品哦")
-						window.open('log.html','_self')
-					}else{
-						for(var i = 0; i < shu.value; i++) {
+					for(var i = 0; i < shu.value; i++) {
 						$.get("http://47.104.244.134:8080//cartsave.do", {
 							gid: id1, //商品编号
 							token: a //用户登录成功时返回的token值
@@ -135,23 +126,6 @@
 
 					}
 					alert("添加成功")
-					}
-				
-					
-//					for(var i = 0; i < shu.value; i++) {
-//						$.get("http://47.104.244.134:8080//cartsave.do", {
-//							gid: id1, //商品编号
-//							token: a //用户登录成功时返回的token值
-//						}).done(sum => {
-//							if(sum.code==0){
-//								console.log(sum)
-//								
-//							}
-//							
-//						})
-//
-//					}
-//					alert("添加成功")
 				}
 
 				//scr

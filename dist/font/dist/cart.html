@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/cart.css" />
+		<script src="js/list.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="header02">
+			<div class="header2">
+				<a class="header2-tu1" href="index.html"><img src="img/miya.png" /></a>
+				<div class="r">
+					<input type="text" id="header2-inp1" value="兔头妈妈甄选" />
+					<input type="button" id="header2-but1" value="搜索" />
+					<a class="go" href="#"><span class="iconfont icon-gouwuche"></span>购物车</a>
+					<span class="DHA">沛多丽DHA</span>
+				</div>
+
+			</div>
+		</div>
+		<!--购物车部分-->
+
+		<div class="header-nav01">
+			<div class="header-nav">
+
+				<ul class="navs">
+					<li class="active">
+						<a href="javascript:;">购物车</a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+
+		<!--<input type="checkbox" checked="checked" id="quanbu" value="" />-->
+		<div style="height:40px;width:40px;background:red;" id="hu">
+
+		</div>
+		<ul class="liebiao">
+			<!--<input type="checkbox" checked=""  id="checkboxall" />-->
+
+		</ul>
+		<div class="header-nav01" >
+			<div class="header-nav">
+
+				<ul class="navs">
+					<li class="active">
+						<a href="javascript:;"></a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript">
+			//			 var checkall = document.querySelectorAll("#checkboxall")
+			//			console.log(checkall)
+			var hu = JSON.parse(localStorage.getItem("tok"))
+			console.log(hu)
+			var zui = document.querySelectorAll(".liebiao")[0]
+			$.get("http://47.104.244.134:8080/cartlist.do", {
+				token: hu //用户登录成功时返回的token值
+			}).done(data => {
+				console.log(data)
+				var str = ""
+				for(var i = 0; i < data.length; i++) {
+					str += `
+						
+						<li>
+							<input type="checkbox" name="" class="checkbox" />
+							<div><p>${data[i].goods.name}</p></div>
+							<img src="${data[i].goods.picurl}"/>
+							<h5 class = "jia1">-</h5>
+							<div class="liang">${data[i].count}</div>
+							<h5 class = "jia2">+</h5>
+							<div class="dan">${data[i].goods.price}</div>
+							<div class="ge">${data[i].count*data[i].goods.price}</div>
+							<div class="shan">取消</div>
+						</li>
+					`
+				}
+				b = `
+					<div class="toubu">
+					  <label for="quanbu">全选</label> <input type="checkbox"   id="quanbu" value="" />总价:
+					 <h4 id="zuizhong">
+			
+		</h4>
+					</div>
+					`
+				$("#hu").click(function() {
+						console.log($("li input:has"))
+					}
+
+				)
+
+				//				c=`
+				//					<div>您挑选商品的总价是:${data[i].count*data[i].goods.price}</div>
+				//					`
+				zui.innerHTML = b + str;
+
+				//					let countNum = 0
+//				document.onclick=function(){
+//					var qiu = 0
+//					console.log($("li input:checked"))
+//					$("li input:checked").each(function(){
+//						
+//						qiu += parseInt($(this).next().next().next().next().next().next().next().html());
+//					})
+//					$("#zuizhong").text(qiu);
+//				}
+				
+				
+				
+				var countPrice = 0
+				var cks = document.querySelectorAll(".checkbox")
+				var ge = document.querySelectorAll(".ge")
+				var liang = document.querySelectorAll(".liang")
+				var dan = document.querySelectorAll(".dan")
+				for(var j = 0; j < cks.length; j++) {
+					var ck = cks[j]
+					if(ck.checked) {
+						var p = data[j]
+						//							countNum += parseInt(p.pnum)
+						countPrice += parseFloat(ge.value)
+					}
+				}
+				var spans = document.querySelectorAll("#zuizhong")[0]
+				console.log(spans)
+				spans.innerHTML = countPrice
+
+				console.log($('#quanbu'))
+				console.log($('.checkbox'))
+				$('#quanbu').click(function() {
+					console.log("6565")
+					var sum = 0
+					$('.checkbox').prop('checked', this.checked)
+//					${'.ge'}.html(0)
+//					${'.ge'}.
+					$("li input:checked").each(function(){
+						console.log(this)
+						sum += parseInt($(this).next().next().next().next().next().next().next().html());
+					})
+					$("#zuizhong").text(sum);
+				})
+				$('.checkbox').click(function() {
+					var num=0
+					if($('.checkbox').length == $('.checkbox:checked').length) {
+						$('#quanbu').prop('checked', true);
+					} else {
+						$('#quanbu').prop('checked', false)
+					}
+					$("li input:checked").each(function(){
+						
+					num += parseInt($(this).next().next().next().next().next().next().next().html());
+					})
+					$("#zuizhong").text(num);
+					
+					console.log()
+					
+				})
+				
+				//页面付款刷新
+
+				var jia1 = document.querySelectorAll(".jia1")
+				var jia2 = document.querySelectorAll(".jia2")
+				var shan = document.querySelectorAll(".shan")
+
+				for(let x = 0; x < jia1.length; x++) {
+					//							console.log(jia1[x])
+					//							console.log(data[x].id)
+					console.log(ge[x])
+					console.log(liang[x].innerHTML)
+					console.log(dan[x].innerHTML)
+					ge[x].innerHTML = parseInt(liang[x].innerHTML) * parseInt(dan[x].innerHTML)
+
+					var liang11 = document.querySelectorAll(".liang")[x]
+					console.log(parseInt(liang11.innerHTML))
+					liang11.onblur = function() {
+						if(parseInt(liang11.innerHTML) < 1) {
+							liang11.innerHTML = 1
+						}
+					}
+					//数值失去焦点刷新
+					jia1[x].onclick = () => {
+						var liang = document.querySelectorAll(".liang")[x]
+						if(liang.innerHTML <= 1) {
+							liang.innerHTML = 1
+						} else {
+
+							var ok = localStorage.getItem('tok');
+							console.log(data[x])
+							$.get("http://47.104.244.134:8080/cartupdate.do", {
+								id: data[x].id, //购物车中商品编号
+								gid: data[x].gid, //商品编号
+								num: -1, //商品数量（>0 新增）（<0 减少数量）（=0 删除该商品）
+
+								token: ok //用户登录成功时返回的token值
+							}).done(quan => {
+								if(quan.code == 0) {
+									var liang = document.querySelectorAll(".liang")[x]
+									liang.innerHTML -= 1;
+
+									var ge = document.querySelectorAll(".ge")
+									var liang = document.querySelectorAll(".liang")
+									var dan = document.querySelectorAll(".dan")
+									ge[x].innerHTML = parseInt(liang[x].innerHTML) * parseInt(dan[x].innerHTML)
+								}
+								console.log(quan)
+							})
+						}
+					}
+					//减的请求
+					jia2[x].onclick = () => {
+						var ok = localStorage.getItem('tok');
+						console.log(data[x])
+						$.get("http://47.104.244.134:8080/cartupdate.do", {
+							id: data[x].id, //购物车中商品编号
+							gid: data[x].gid, //商品编号
+							num: 1, //商品数量（>0 新增）（<0 减少数量）（=0 删除该商品）
+
+							token: ok //用户登录成功时返回的token值
+						}).done(quan => {
+							if(quan.code == 0) {
+								var liang01 = document.querySelectorAll(".liang")[x]
+								liang = parseInt(liang01.innerHTML)
+								console.log(liang)
+								liang += 1
+								liang01.innerHTML = liang
+								var ge = document.querySelectorAll(".ge")
+								var liang = document.querySelectorAll(".liang")
+								var dan = document.querySelectorAll(".dan")
+								ge[x].innerHTML = parseInt(liang[x].innerHTML) * parseInt(dan[x].innerHTML)
+							}
+							console.log(quan)
+						})
+					}
+					//加的请求
+					shan[x].onclick = () => {
+						var ok = localStorage.getItem('tok');
+						$.get("http://47.104.244.134:8080/cartupdate.do", {
+							id: data[x].id, //购物车中商品编号
+							gid: data[x].gid, //商品编号
+							num: 0, //商品数量（>0 新增）（<0 减少数量）（=0 删除该商品）
+
+							token: ok //用户登录成功时返回的token值
+						}).done(shan => {
+							console.log(shan.code)
+							if(shan.code == 0) {
+
+								var shan01 = document.querySelectorAll(".shan")[x]
+								shan01.parentNode.remove()
+
+								
+							}
+							console.log(shan)
+						})
+
+					}
+					//删除请求
+
+				}
+
+			})
+		</script>
+	</body>
+
+</html>
