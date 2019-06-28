@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/scss1.css" />
+		<link rel="stylesheet" type="text/css" href="font/iconfont.css" />
+		
+	</head>
+
+	<body>
+		<div class="header01">
+			<div class="header">
+				<div class="nei1"><span class="iconfont icon-xinfeng"></span><span>手机蜜芽</span></div>
+				<ul class="ul01">
+					<li>你好！欢迎<span class="ming"></span>来到蜜芽</li>
+					<li>
+						<a href="log.html">登录</a>
+					</li>
+					<li>
+						<a href="reg.html">免费注册</a>
+					</li>
+					<li>
+						<a href="javascript:;">帮助中心</a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+		<!--头部注册-->
+		<div class="header02">
+			<div class="header2">
+				<a class="header2-tu1" href="#"><img src="img/miya.png" /></a>
+				<div class="r">
+					<input type="text" id="header2-inp1" value="兔头妈妈甄选" />
+					<input type="button" id="header2-but1" value="搜索" />
+					<a class="go" href="cart.html"><span class="iconfont icon-gouwuche"></span>购物车</a>
+					<span class="DHA">沛多丽DHA</span>
+				</div>
+
+			</div>
+		</div>
+		<!--购物车部分-->
+		<div class="header-nav01">
+			<div class="header-nav">
+				<ul class="navs">
+					<li class="active">
+						<a href="javascript:;">首页</a>
+					</li>
+					<li>
+						<a class="zhi" style="display:block;height:49px;width:150px;" href="javascript:;">纸尿裤</a>
+					</li>
+					<li>
+						<a class="zhi" style="display:block;height:49px;width:150px;" href="javascript:;">奶粉</a>
+					</li>
+					<li id="zheng">
+						<a href="javascript:;">正品保证></a>
+						<div class="list">
+							<span>正品保证</span>
+							<span>退货策略</span>
+							<span>帮助中心</span>
+						</div>
+					</li>
+					<li>
+						<a href="">早教音乐</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			alert("主页只有导航栏的纸尿布和奶粉能点入列表页，点击每个页面的左上角蜜芽图标能返回首页")
+			var token=JSON.parse(localStorage.getItem("tok"))
+			var tok =location.search.split("=")[1]
+			console.log(tok)
+				$(".ming").html(tok)
+			//登陆后的token显示
+			var zhi =document.querySelectorAll(".zhi")[0]
+			var zhi1 =document.querySelectorAll(".zhi")[1]
+			console.log(zhi)
+//			var nai =document.querySelectorAll(".nai")
+			zhi.onclick=function(){
+				
+				window.open('http://localhost:8080/list.html?tok='+tok,'_self')
+			}
+			zhi1.onclick=function(){
+				
+				window.open('http://localhost:8080/list.html?tok='+tok,'_self')
+			}
+			//点击导航进入列表页JS代码
+			
+			
+			$(".navs li").mouseover(function() {
+				$(this).addClass("oli").siblings().removeClass()
+			}).mouseout(function() {
+				$(this).removeClass()
+			})
+			$("#zheng").mouseover(function() {
+				$(this).children(".list").fadeIn()
+			}).mouseout(function() {
+				$(this).children(".list").fadeOut()
+			})
+			//nav栏小效果
+
+			//				$(".list a").mouseover(function(){
+			//					$(this).addClass("nav01").siblings().removeClass()
+			//				}).mouseout(function(){
+			//					$(this).removeClass()
+			//				})
+		</script>
+		<!--导航部分-->
+		<div style="display: none;" id="xuanfu">
+			<img style="position: fixed;left:40px;top:250px;z-index:20;" src="https://img.miyabaobei.com/d1/p3/2016/05/19/c2/8f/c28f17d15a13149cfa89f18dc32efb87.png" />
+		</div>
+		<script>
+			$(window).scroll(function() {
+				let str = $(this).scrollTop()
+				if(str >= 140) {
+					$("#xuanfu").fadeIn()
+				} else {
+					$("#xuanfu").fadeOut()
+				}
+			})
+		</script>
+		<!--悬浮部分-->
+		<div class="lunbo01">
+			<div class="lunbo">
+				<ul class="lunlie">
+					<li>
+						<div class="a1">奶粉/纸尿裤</div>
+						<div class="a2">婴儿奶粉&&羊奶粉&&特配奶粉</div>
+						<div class="a3">拉拉裤&&宝宝湿巾&&</div>
+						<ul class="yin01">
+							<div>唱跳rap篮球<br/>唱跳rap篮球</div>
+							<div>唱跳rap篮球<br/>唱跳rap篮球</div>
+							<div>唱跳rap篮球<br/>唱跳rap篮球</div>
+							<div>唱跳rap篮球<br/>唱跳rap篮球</div>
+							<div>唱跳rap篮球<br/>唱跳rap篮球</div>
+							<div>唱跳rap篮球<br/>唱跳rap篮球</div>
+							<div>唱跳rap篮球<br/>唱跳rap篮球</div>
+							<div>唱跳rap篮球<br/>唱跳rap篮球</div>
+						</ul>
+					</li>
+					<li>
+						<div class="a1">奶粉/纸尿裤</div>
+						<div class="a2">婴儿奶粉&&羊奶粉&&特配奶粉</div>
+						<div class="a3">拉拉裤&&宝宝湿巾&&</div>
+						<ul class="yin02">
+							<div>巴啦啦魔法能量量<br/>巴啦啦魔法能量量</div>
+							<div>巴啦啦魔法能量量<br/>巴啦啦魔法能量量</div>
+							<div>巴啦啦魔法能量量<br/>巴啦啦魔法能量量</div>
+							<div>巴啦啦魔法能量量<br/>巴啦啦魔法能量量</div>
+							<div>巴啦啦魔法能量量<br/>巴啦啦魔法能量量</div>
+							<div>巴啦啦魔法能量量<br/>巴啦啦魔法能量量</div>
+							<div>巴啦啦魔法能量量<br/>巴啦啦魔法能量量</div>
+							<div>巴啦啦魔法能量量<br/>巴啦啦魔法能量量</div>
+						</ul>
+					</li>
+					<li>
+						<div class="a1">奶粉/纸尿裤</div>
+						<div class="a2">婴儿奶粉&&羊奶粉&&特配奶粉</div>
+						<div class="a3">拉拉裤&&宝宝湿巾&&</div>
+					</li>
+					<li>
+						<div class="a1">奶粉/纸尿裤</div>
+						<div class="a2">婴儿奶粉&&羊奶粉&&特配奶粉</div>
+						<div class="a3">拉拉裤&&宝宝湿巾&&</div>
+					</li>
+					<li>
+						<div class="a1">奶粉/纸尿裤</div>
+						<div class="a2">婴儿奶粉&&羊奶粉&&特配奶粉</div>
+						<div class="a3">拉拉裤&&宝宝湿巾&&</div>
+					</li>
+					<li>
+						<div class="a1">奶粉/纸尿裤</div>
+						<div class="a2">婴儿奶粉&&羊奶粉&&特配奶粉</div>
+						<div class="a3">拉拉裤&&宝宝湿巾&&</div>
+					</li>
+					<li>
+						<div class="a1">奶粉/纸尿裤</div>
+						<div class="a2">婴儿奶粉&&羊奶粉&&特配奶粉</div>
+						<div class="a3">拉拉裤&&宝宝湿巾&&</div>
+					</li>
+				</ul>
+				
+				<!--<ul class="yin01">
+					<li>巴啦啦魔法能量<br/>唱跳rap篮球</li>
+					<li>巴啦啦魔法能量<br/>唱跳rap篮球</li>
+					<li>巴啦啦魔法能量<br/>唱跳rap篮球</li>
+					<li>巴啦啦魔法能量<br/>唱跳rap篮球</li>
+					<li>巴啦啦魔法能量<br/>唱跳rap篮球</li>
+					<li>巴啦啦魔法能量<br/>唱跳rap篮球</li>
+					<li>巴啦啦魔法能量<br/>唱跳rap篮球</li>
+					<li>巴啦啦魔法能量<br/>唱跳rap篮球</li>
+				</ul>-->
+
+				<div id="lunboxin">
+					<ul class="lun">
+						<li>
+							<img src="img/11Z2}2({1C5GW3P6}2WFB1I.png" />
+						</li>
+						<li>
+							<img src="img/lunbo01.gif" />
+						</li>
+					</ul>
+					<ul class="lundao">
+						<li>1</li>
+						<li>2</li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(".lunlie li").hover(function(){
+//				console.log($(this).find("ul"))
+				$(this).find("ul").css('display','block')
+				$(this).animate({'marginLeft': '8px'},200)
+			},function(){
+				$(this).find("ul").css('display','none')
+				$(this).animate({'marginLeft': '0'},200)
+			})
+		</script>
+
+		<!--轮播板块-->
+		<div style="height:170px;width:1282px;float:right;position: relative;background:#f9f9f9;" id="remai">
+			<a style="display: block;height:114px;width:856px;position: absolute;left:370px;top:25px" href="javascript:;"><img src="img/OWVJ5{2(TAM)0CLU`P)9JYV.png" /></a>
+		</div>
+		<!--热卖-->
+		<div class="remai05">
+			<span style="font-size:25px;line-height:90px;margin-left:172px;">为你推荐</span><span style="font-size:18px;line-height:90px;margin-left:40px;color:#666;">千万妈妈，精明之选</span>
+
+		</div>
+		<div class="mulu01">
+			<ul class="mulu1">
+				<li><img src="https://img05.miyabaobei.com/d1/p5/2018/03/07/89/2b/892b8ad5b547a0713e366cdb07c40302896872574.jpg@base@tag=imgScale&w=447" />
+					<p>春季新款男童童装卡通家具服</p>
+					<p class="jia">￥58</p>
+				</li>
+				<li><img src="https://img06.miyabaobei.com/d1/p6/2019/03/18/8e/a0/8ea0c3b8fb70bbbc80891646d453e119988581418.jpg@base@tag=imgScale&w=447">
+					<p>春季新款男童童装卡通家具服</p>
+					<p class="jia">￥58</p>
+				</li>
+				<li><img src="https://img05.miyabaobei.com/d1/p5/2016/12/15/ce/11/ce116bb1a614af840e3f30eabc6c048a866676380.jpg@base@tag=imgScale&w=447">
+					<p>春季新款男童童装卡通家具服</p>
+					<p class="jia">￥58</p>
+				</li>
+				<li><img src="https://img05.miyabaobei.com/d1/p5/2016/12/15/ce/11/ce116bb1a614af840e3f30eabc6c048a866676380.jpg@base@tag=imgScale&w=447">
+					<p>春季新款男童童装卡通家具服</p>
+					<p class="jia">￥58</p>
+				</li>
+			</ul>
+		</div>
+		<!--<div class="remai05">
+			<span style="font-size:25px;line-height:90px;margin-left:172px;">为你推荐</span><span style="font-size:18px;line-height:90px;margin-left:40px;color:#666;">千万妈妈，精明之选</span>
+			
+		</div>-->
+		<div class="kongxi"></div>
+		<div class="mulu0001">
+			<div class="remai05">
+				<span style="font-size:25px;line-height:90px;margin-left:172px;">妈妈们的选择</span><span style="font-size:18px;line-height:90px;margin-left:40px;color:#666;">穿上年轻30岁</span>
+
+			</div>
+			<ul class="mulu001">
+				<li><img src="https://img05.miyabaobei.com/d1/p6/2019/05/06/34/f6/34f69d0fde75e7ffeb420fc399ad622d463294090.jpg@base@tag=imgScale&w=447" />
+					<p>2019新款情侣凉鞋韩版时尚百搭运动魔术贴防滑软底休闲沙滩鞋 时尚沙滩凉鞋 一字款黑色39</p>
+					<p class="jia0">￥58</p>
+				</li>
+				<li><img src="https://img06.miyabaobei.com/d1/p6/2019/03/12/35/74/3574614dc3c5db84ee0cb97c1b75016e718033367.jpg@base@tag=imgScale&w=447" />
+					<p>2019新款情侣凉鞋韩版时尚百搭运动魔术贴防滑软底休闲沙滩鞋 时尚沙滩凉鞋 一字款黑色39</p>
+					<p class="jia0">￥58</p>
+				</li>
+				<li><img src="https://img05.miyabaobei.com/d1/p6/2019/05/07/23/65/236576c10725c71e58ddfa94c26b420d098795881.jpg@base@tag=imgScale&w=447">
+					<p>2019新款情侣凉鞋韩版时尚百搭运动魔术贴防滑软底休闲沙滩鞋 时尚沙滩凉鞋 一字款黑色39</p>
+					<p class="jia0">￥58</p>
+				</li>
+				<li><img src="https://img06.miyabaobei.com/d1/p6/2019/02/27/e5/52/e552ab34c652a5df1c5925ddadb68c30517316553.jpg@base@tag=imgScale&w=447">
+					<p>2019新款情侣凉鞋韩版时尚百搭运动魔术贴防滑软底休闲沙滩鞋 时尚沙滩凉鞋 一字款黑色39</p>
+					<p class="jia0">￥58</p>
+				</li>
+				<li><img src="https://img05.miyabaobei.com/d1/p6/2019/06/13/66/91/6691c52c3745725bd4ecb0353d3413ba405205679.jpg@base@tag=imgScale&w=447">
+					<p>2019新款情侣凉鞋韩版时尚百搭运动魔术贴防滑软底休闲沙滩鞋 时尚沙滩凉鞋 一字款黑色39</p>
+					<p class="jia0">￥58</p>
+				</li>
+			</ul>
+		</div>
+		<div class="dibu">
+			<a href="javascript:;"><img src="img/shouyedibu.png"></a>
+		</div>
+		<div class="dibu2">
+			<ul>
+				<li>关于蜜芽<span>|</span></li>
+				<li>关于蜜芽<span>|</span></li>
+				<li>关于蜜芽<span>|</span></li>
+				<li>关于蜜芽<span>|</span></li>
+				<li>关于蜜芽<span>|</span></li>
+				<li>关于蜜芽<span>|</span></li>
+				<li>关于蜜芽<span>|</span></li>
+				<li>关于蜜芽<span>|</span></li>
+				<li>关于蜜芽<span>|</span></li>
+			</ul>
+			<p>京公网安备：11010502027270 | 营业执照：91110105582599307U | 食品经营许可证：SP1101051410296669 | 出版物经营许可证：新出发京零字第朝160088号</p>
+			<p>沪ICP备16004431号-2 | 员工舞弊举报：jiancha@mia.com 电话：010-56733467</p>
+			<p>Copyright © 2019 北京花旺在线商贸有限公司 Mia.com 保留一切权利。</p>
+		</div>
+		<script type="text/javascript">
+			console.log($(".lunlie li:first"))
+		</script>
+		
+		
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>
